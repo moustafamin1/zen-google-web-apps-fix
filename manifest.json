@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Zen Google Web Apps Fix",
+  "version": "1.7",
+  "description": "Fixes Google Chat and Antigravity PWA redirects, voice recording, and image attachment rendering on Zen Browser",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "zen-google-fix@local",
+      "strict_min_version": "115.0"
+    }
+  },
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "*://chat.google.com/*",
+    "*://antigravity.google.com/*",
+    "*://mail.google.com/chat/*",
+    "*://*.googleusercontent.com/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://chat.google.com/*",
+        "*://antigravity.google.com/*",
+        "*://mail.google.com/chat/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}
